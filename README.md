@@ -46,8 +46,7 @@
 * [Built With](#built-with)
 * [Nice to have features](#nice-to-have-features)
 * [Potential Future Updates](#potential-future-updates)
-* [Contact](#authors)
-* [Acknowledgements](#acknowledgments)
+
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
