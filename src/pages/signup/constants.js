@@ -25,6 +25,7 @@ export const LOCATIONS = [
     'London, UK',
     'Jerusalem, Palestine',
     'New york, USA',
-    'Ramallah, Palstine',
+    'Cairo, Egypt',
+    'Paris, France',
     'Amman, Jordan'
 ]

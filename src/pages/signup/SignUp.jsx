@@ -19,7 +19,8 @@ import { SellerStore } from "../../store/seller";
 import { BuyerStore } from "../../store/buyer";
 import { IMAGES, LOCATIONS } from "./constants";
 import { CategoriesStore } from "../../store/category";
-import _ from "lodash";
+import {UserStore} from "../../store/user";
+import {Header} from "../../components/header";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -88,6 +89,12 @@ const SignUp = () => {
   const history = useHistory();
   const { type } = useParams();
 
+  React.useEffect(()=> {
+    if(UserStore.isLoggedIn){
+      history.push('/')
+    }
+  }, [])
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const userData = {
@@ -97,7 +104,7 @@ const SignUp = () => {
       firstName,
       lastName,
       imageUrl: IMAGES[Math.floor(Math.random() * IMAGES.length)],
-      location,
+      location: LOCATIONS[location],
     };
 
     switch (type) {
@@ -106,7 +113,7 @@ const SignUp = () => {
           CategoriesStore.categories[
             Math.floor(Math.random() * CategoriesStore.categories.length)
           ];
-        SellerStore.registerNewSeller(userData, category);
+        SellerStore.registerNewSeller(userData, category.id);
         history.push("/");
         break;
       case "buyer":
@@ -129,7 +136,6 @@ const SignUp = () => {
       setEmailError("Please Enter a valid email");
       errors.push(emailError);
     } else setEmailError("");
-    console.log(isEmailExist(event.target.value))
     if (isEmailExist(event.target.value)) {
       
       setEmailError(
@@ -169,19 +175,20 @@ const SignUp = () => {
   };
 
   const handleLocation = (event) => {
-    if (!event.target.value) {
+    if (event.target.value=== undefined) {
       setGeneralError("the locathion should not be empty");
       setErros([...errors, generalError]);
     } else {
-        setLocation(event.target.value);
+
+      setLocation(event.target.value);
     }
   };
 
   React.useEffect(() => {
-    if (!!firstName && !!lastName && !!password && !!email && !!location) {
+    if (!!firstName && !!lastName && !!password && !!email ) {
       setErros([]);
     }
-  }, [firstName, lastName, password, email, location]);
+  }, [firstName, lastName, password, email]);
 
   return (
     <Grid
@@ -191,11 +198,12 @@ const SignUp = () => {
       justify="center"
       className={Classnames(classes.form, { [classes.desktopForm]: !isMobile })}
     >
+      <Header />
       <Grid item sm />
       <Grid item sm>
         <img src={signup} alt="signUp" className={classes.image} />
         <Grid item className={classes.pageTitle}>
-          SignUp
+          Sign Up for {type}
         </Grid>
         <form noValidate onSubmit={handleSubmit}>
           <TextField
@@ -246,12 +254,12 @@ const SignUp = () => {
             onChange={handlePasswordChange}
             fullWidth
           />
-          <>
+          <Grid item>
             <InputLabel className={classes.location}> Location</InputLabel>
             <Select
-              className={classes.select}
-              value={location}
-              onChange={handleLocation}
+                className={classes.select}
+                value={location}
+                onChange={handleLocation}
             >
               <MenuItem value={0}>{LOCATIONS[0]}</MenuItem>
               <MenuItem value={1}>{LOCATIONS[1]}</MenuItem>
@@ -259,7 +267,7 @@ const SignUp = () => {
               <MenuItem value={3}>{LOCATIONS[3]}</MenuItem>
               <MenuItem value={4}>{LOCATIONS[4]}</MenuItem>
             </Select>
-          </>
+          </Grid>
           {generalError && (
             <Typography variant="body2" className={classes.customError}>
               {generalError}

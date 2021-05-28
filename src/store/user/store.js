@@ -1,21 +1,21 @@
-import { action, computed, observable, observe } from 'mobx';
-import _ from 'lodash';
+import {action, observable} from 'mobx';
 
 class UserStore {
     @observable isLoggedIn = false;
 
     @observable user;
 
-    constructor(){
-        this.isLoggedIn = !!localStorage.getItem('userId')
+    constructor() {
+        this.isLoggedIn = !!localStorage.getItem('userId');
+        this.user = localStorage.getItem('userId')
     }
 
 
-    @action login(user){
+    @action login(user) {
         this.user = user;
     }
 
 
-
 }
+
 export default new UserStore();
