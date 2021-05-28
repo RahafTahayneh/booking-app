@@ -8,7 +8,7 @@
   <p align="center">A react-mobx responsive application, where buyer can see the details of sellers and book an appointment with the seller. A buyer needs to sign up and login to book/delete/view an appointment And s/he should wait the seller to approve the reservation other wise it will be delete.  </p>
   <p> Also, there is a seller view, where seller will be able to view the reservations, approve or reject them. Also s/he will be to add new available slots, view/delete the added ones</p>
   <a href="https://github.com/RahafTahayneh/booking-app">
-    <p align="center"> <img src="https://ibb.co/ZT9Wdxj" alt="Booky" width="600" height="400"> </p>
+    <p align="center"> <a href="https://ibb.co/ZT9Wdxj"><img src="https://i.ibb.co/BskqLBp/Screen-Shot-2021-05-29-at-2-00-49-AM.png" alt="Screen-Shot-2021-05-29-at-2-00-49-AM" alt="Booky" width="600" height="400" border="0"></a> </p>
   </a>
   <p align="center">
     <a href="https://github.com/RahafTahayneh/booking-app/issues">Report Bug</a>
