@@ -7,13 +7,15 @@ import {
   CircularProgress,
   Typography,
 } from "@material-ui/core";
-import { useHistory, useParams } from "react-router";
+import { useHistory, useParams } from "react-router-dom";
 import {isMobile} from 'react-device-detect';
 import Classnames from 'classnames'
 import login from "./assets/login.png";
 import { isEmail, isEmpty } from "../../utils/validation";
 import { SellerStore } from "../../store/seller";
 import { BuyerStore } from "../../store/buyer";
+import {UserStore} from "../../store/user";
+import {Header} from "../../components/header";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -67,6 +69,12 @@ const Login = () => {
   const history = useHistory();
   const { type } = useParams();
 
+  React.useEffect(()=> {
+    if(UserStore.isLoggedIn){
+      history.push('/')
+    }
+  }, []);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const userData = {
@@ -113,11 +121,12 @@ const Login = () => {
       justify="center"
       className={Classnames(classes.form, {[classes.desktopForm]: !isMobile})}
     >
+      <Header />
       <Grid item sm />
       <Grid item sm>
         <img src={login} alt="login" className={classes.image} />
         <Grid item className={classes.pageTitle}>
-          Login
+          Login for {type}
         </Grid>
         <form noValidate onSubmit={handleSubmit}>
           <TextField

@@ -1,13 +1,12 @@
 import React from "react";
 import { Grid, makeStyles } from "@material-ui/core";
 import { useHistory } from "react-router";
-import { BuyerStore } from "../../store/buyer";
+import {UserStore} from "../../store/user";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "100%",
     width: "100%",
-    backgroundColor: "#6181f7",
     overflowY: "auto",
     overflowX: "hidden",
     position: "relative",
@@ -16,17 +15,26 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
   const classes = useStyles();
-  console.log(BuyerStore.buyers)
-
   const history = useHistory();
 
+  React.useEffect(()=> {
+      if(UserStore.isLoggedIn)
+      {
+        const type = localStorage.getItem('type');
+        switch (type){
+          case 'seller':
+            history.push('/seller');
+            break;
+          case 'buyer':
+            history.push('/buyer');
+            break;
+        }
+      }else{
+        history.push('/landing')
+      }
+  }, [])
   return (
-    <Grid
-      container
-      direction="column"
-      className={classes.root}
-      wrap={"nowrap"}
-    ></Grid>
+    <Grid />
   );
 };
 

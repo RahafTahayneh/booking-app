@@ -1,7 +1,7 @@
 export const CATEGORIES= [
     {
         id: '415e6cc3583ec',
-        name: 'Fashion and Beauty and Healthcare'
+        name: 'Beauty and Healthcare'
     },
     {
         id: 'cbe98101895eb',

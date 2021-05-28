@@ -5,6 +5,8 @@ import logo from "../../assets/logo.png";
 import buyer1 from "./assets/buyer1.png";
 import seller from "./assets/seller.png";
 import { useHistory } from "react-router";
+import {UserStore} from "../../store/user";
+import {LayoutStore} from "../../store/layout";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -84,6 +86,16 @@ const Landing = () => {
   const classes = useStyles();
 
   const history = useHistory();
+
+  React.useEffect(()=> {
+    LayoutStore.hideSidebar()
+  }, []);
+
+  React.useEffect(()=> {
+    if(UserStore.isLoggedIn){
+      history.push('/')
+    }
+  }, [])
 
   return (
     <Grid container direction="column" className={classes.root} wrap={"nowrap"}>
