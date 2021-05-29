@@ -56,6 +56,7 @@ const ReservationCard = observer(({reservation}) => {
 
     const onReject = () => {
         AppointmentsStore.updateAppointment(reservation.id);
+        SlotsStore.updateSlots(reservation.slot, 'available')
         history.push('/');
     }
 

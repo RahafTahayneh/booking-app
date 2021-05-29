@@ -66,6 +66,7 @@ const Appointment = observer(({appointment}) => {
     const onConfirmDelete = () => {
         AppointmentsStore.updateAppointment(appointment.id);
         SlotsStore.updateSlots(appointment.slot, 'available')
+        setOpen(false)
         history.push('/appointment')
     }
 
@@ -104,7 +105,7 @@ const Appointment = observer(({appointment}) => {
                 <Grid item>
                     <Grid container direction='row' justify={'space-between'} alignItems={'center'} wrap={'nowrap'}>
                         <Grid item className={classes.btnContainer}>
-                            <Button variant={'contained'} className={classes.confirmBtn} onClick={onConfirmDelete}>
+                            <Button variant={'contained'} color={'primary'} className={classes.confirmBtn} onClick={onConfirmDelete}>
                                 Yes
                             </Button>
                         </Grid>

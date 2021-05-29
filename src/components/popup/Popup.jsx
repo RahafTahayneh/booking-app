@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, Dialog, Grid, makeStyles} from "@material-ui/core";
 import CloseIcon from '@material-ui/icons/Close';
 import {observer} from 'mobx-react';
+import Classnames from "classnames";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -44,10 +45,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Popup = observer(({open, hideClose, onClose, children}) => {
+const Popup = observer(({open, hideClose, onClose, className, children}) => {
     const classes = useStyles();
     return (
-            <Dialog open={open} classes={{paperWidthSm: classes.paper}}>
+            <Dialog open={open} classes={{paperWidthSm: Classnames(className, classes.paper)}}>
                 <Grid container direction={'column'}>
                     {!hideClose && <Grid item className={classes.btnContainer}>
                         <Button onClick={onClose} className={classes.btn} variant="outlined">

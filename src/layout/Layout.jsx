@@ -14,12 +14,12 @@ const useStyles = makeStyles((theme) => ({
     body: {
         backgroundColor: '#fff',
         height: '100%',
-        width: props => props.isMobile? '100%' : props.sidebarVisible? 'calc(100% - 240px)':  '100%',
+        width: props => props.isMobile? '100%' : props.sidebarVisible?  'calc(100% - 240px)' :  '100%',
         marginTop: props => props.sidebarVisible? theme.spacing(5) : 0,
         marginLeft: 'auto',
         position: 'relative',
-        '@media (max-width: 600px)': {
-            width: '100%'
+        '@media (max-width: 700px)': {
+            width: '100% !important'
         },
     },
 
@@ -27,9 +27,9 @@ const useStyles = makeStyles((theme) => ({
 
 const Layout = observer(({children}) => {
     const {sidebarVisible} = LayoutStore;
-    const [mobileOpen, setMobileOpen] = React.useState(false);
 
-    const classes = useStyles({sidebarVisible, mobileOpen, isMobile});
+
+    const classes = useStyles({sidebarVisible, isMobile});
 
     return (
         <Grid container direction="column" wrap="nowrap" alignItems={'center'} className={classes.root}>
@@ -37,7 +37,7 @@ const Layout = observer(({children}) => {
                 sidebarVisible
                 && (
                     <Grid item>
-                        <Sidebar mobileOpen={mobileOpen} handleDrawerToggle={() => setMobileOpen(!mobileOpen)} />
+                        <Sidebar />
                     </Grid>
                 )
             }
