@@ -37,14 +37,20 @@ const useStyles = makeStyles((theme) => ({
         color: `${theme.palette.error.main} !important`,
     },
     calender: {
-        margin: `${theme.spacing(3)} !important`,
+        margin: `${theme.spacing(3 , 0, 35, 0)} !important`,
         color: theme.palette.text.secondary,
-        fontWeight: 700
+        fontWeight: 700,
+        height: '100%'
     },
     confirmBtn: {},
     cancel: {
         color: `${theme.palette.error.main} !important`,
+    },
+    popup:{
+        height: '30rem',
+        overflow: 'hidden'
     }
+
 }))
 
 
@@ -68,7 +74,7 @@ const Card = observer(({slot}) => {
     }
 
     const onConfirmEdit = () => {
-        SlotsStore.updateSlot(slot.id, date);
+        SlotsStore.updateSlot(slot.id, date.toISOString());
         setOpenEdit(false)
         history.push('/slots')
     }
@@ -103,18 +109,18 @@ const Card = observer(({slot}) => {
                     </Grid>
                 </Grid>
             </Grid>
-            <Popup open={openEdit} onClose={handleEditClose}>
+            <Popup open={openEdit} onClose={handleEditClose} className={classes.popup}>
                 <Grid container direction={'column'} className={classes.content}>
                     <Grid item className={classes.calender}>
                         <DateTimePicker
                             onChange={(value) => setDate(value)}
-                            value={date}
+                            value={new Date(date)}
                         />
                     </Grid>
                     <Grid item>
                         <Grid container direction='row' justify={'space-between'} alignItems={'center'} wrap={'nowrap'}>
                             <Grid item className={classes.btnContainer}>
-                                <Button variant={'contained'} className={classes.confirmBtn} onClick={onConfirmEdit}>
+                                <Button variant={'contained'} color={'primary'} className={classes.confirmBtn} onClick={onConfirmEdit}>
                                     Confirm
                                 </Button>
                             </Grid>
@@ -134,7 +140,7 @@ const Card = observer(({slot}) => {
                 <Grid item>
                     <Grid container direction='row' justify={'space-between'} alignItems={'center'} wrap={'nowrap'}>
                         <Grid item className={classes.btnContainer}>
-                            <Button variant={'contained'} className={classes.confirmBtn} onClick={onConfirmDelete}>
+                            <Button variant={'contained'} color={'primary'} className={classes.confirmBtn} onClick={onConfirmDelete}>
                                 Yes
                             </Button>
                         </Grid>

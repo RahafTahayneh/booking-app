@@ -25,9 +25,9 @@ export const SELLERS = [
     },
     {
         id: '16546146212c4',
-        email: 'Jehad@gmail.com',
+        email: 'daneilkh@gmail.com',
         password: '123456',
-        firstName: 'Jehad',
+        firstName: 'Daniel',
         lastName: 'Kh',
         location: 'Yamun, PS',
         imageUrl: img3,

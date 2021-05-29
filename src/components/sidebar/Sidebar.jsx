@@ -64,13 +64,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Sidebar = (props) => {
-    const {window, mobileOpen, handleDrawerToggle} = props;
+    const {window} = props;
     const type = localStorage.getItem('type');
+    const [mobileOpen, setMobileOpen] = React.useState(false);
     const sidebarBuyerTabs = useBuyerTabs();
     const sidebarSellerTabs = useSellerTabs();
     const classes = useStyles();
     const theme = useTheme();
     const history = useHistory()
+
+    const handleDrawerToggle= () => setMobileOpen(!mobileOpen)
+
+    console.log(mobileOpen)
 
     const drawer = (
         <div>

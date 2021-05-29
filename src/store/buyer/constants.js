@@ -5,7 +5,7 @@ export const Buyers = [
         email: 'mhmad@gmail.com',
         password: '123456',
         firstName: 'Mhmad',
-        lastName: 'Tahayneh',
+        lastName: 'Nova',
         location: 'London, UK',
         imageUrl: user1,
     }
